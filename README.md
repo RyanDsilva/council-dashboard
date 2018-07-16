@@ -1,6 +1,8 @@
-# council-dashboard
+## Council Dashboard
 
-> Common Council Dashboard
+> Internet Technologies Project
+
+> Made by Ryan Dsilva, Niharika Gogate and Katoushka Gracious
 
 ## Build Setup
 
