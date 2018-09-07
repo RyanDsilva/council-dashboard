@@ -3,28 +3,24 @@
     <div class="top"></div>
     <div class="event-cards">
       <v-container grid-list-md>
+        <div id="page-heading">
+          <h1>Events</h1>
+          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis sequi explicabo nobis iste rerum maiores ipsum esse facilis atque doloribus exercitationem nihil, non at laudantium tenetur optio dicta amet mollitia. Illum, alias fugit culpa nemo veritatis ex possimus iusto placeat quae est sit neque dolores repellendus iure impedit, atque qui. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis sequi explicabo nobis iste rerum maiores ipsum esse facilis atque doloribus exercitationem nihil, non at laudantium tenetur optio dicta amet mollitia. Illum, alias fugit culpa nemo veritatis ex possimus iusto placeat quae est sit neque dolores repellendus iure impedit, atque qui.</p>
+        </div>
         <v-layout row wrap>
-          <v-flex xs12 md6 lg4 class="mx-2 my-2" v-for="event in events" :key="event.title">
+          <v-flex v-for="event in events" :key="event.title" xs12 md6 lg3>
             <v-card>
-              <img class="event-card-image" :src=event.image />
+              <v-img src="../../assets/test.jpg"></v-img>
               <v-card-title primary-title>
-                <div>
-                  <div class="headline">{{event.title}}</div>
-                  <span class="grey--text">{{event.host}}</span>
+                <div class="text-xs-center">
+                  <h3 class="headline mb-0">{{event.title}}</h3>
+                  <div class="grey--text mb-2">{{event.host}}</div>
+                  <p>{{event.description}}</p>
                 </div>
               </v-card-title>
               <v-card-actions>
-                <v-btn flat color="indigo" :to=event.link>Register</v-btn>
-                <v-spacer></v-spacer>
-                <v-btn icon @click="show = !show">
-                  <v-icon>{{ show ? 'keyboard_arrow_down' : 'keyboard_arrow_up' }}</v-icon>
-                </v-btn>
+                <v-btn class="mx-auto" :to="event.link" flat color="indigo">Register</v-btn>
               </v-card-actions>
-              <v-slide-y-transition>
-                <v-card-text v-show=event.show>
-                  {{event.description}}
-                </v-card-text>
-              </v-slide-y-transition>
             </v-card>
           </v-flex>
         </v-layout>
@@ -44,8 +40,7 @@ export default {
         image: '../../assets/test.jpg',
         link: '#',
         description:
-          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae quis, quia nihil veniam quaerat molestias dolores in delectus adipisci. Fuga, nostrum rerum! Quas commodi accusantium sit consequatur nam sapiente, labore iste temporibus deleniti veniam voluptatem natus dolore amet architecto exercitationem fuga facere nesciunt soluta quae ducimus placeat perspiciatis vitae dignissimos.',
-        show: false,
+          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae quis, quia nihil veniam quaerat molestias dolores in delectus adipisci.',
       },
       {
         title: 'Euphoria',
@@ -53,8 +48,7 @@ export default {
         image: '../../assets/test.jpg',
         link: '#',
         description:
-          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae quis, quia nihil veniam quaerat molestias dolores in delectus adipisci. Fuga, nostrum rerum! Quas commodi accusantium sit consequatur nam sapiente, labore iste temporibus deleniti veniam voluptatem natus dolore amet architecto exercitationem fuga facere nesciunt soluta quae ducimus placeat perspiciatis vitae dignissimos.',
-        show: false,
+          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae quis, quia nihil veniam quaerat molestias dolores in delectus adipisci. Fuga, nostrum rerum! Quas commodi accusantium sit consequatur nam sapiente, labore iste temporibus deleniti veniam voluptatem natus dolore amet architecto exercitationem.',
       },
       {
         title: 'Crescendo',
@@ -62,8 +56,7 @@ export default {
         image: '../../assets/test.jpg',
         link: '#',
         description:
-          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae quis, quia nihil veniam quaerat molestias dolores in delectus adipisci. Fuga, nostrum rerum! Quas commodi accusantium sit consequatur nam sapiente, labore iste temporibus deleniti veniam voluptatem natus dolore amet architecto exercitationem fuga facere nesciunt soluta quae ducimus placeat perspiciatis vitae dignissimos.',
-        show: false,
+          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae quis, quia nihil veniam quaerat molestias dolores in delectus adipisci. Fuga, nostrum rerum! Quas commodi accusantium sit consequatur nam sapiente, labore iste.',
       },
       {
         title: 'Athlos',
@@ -71,8 +64,7 @@ export default {
         image: '../../assets/test.jpg',
         link: '#',
         description:
-          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae quis, quia nihil veniam quaerat molestias dolores in delectus adipisci. Fuga, nostrum rerum! Quas commodi accusantium sit consequatur nam sapiente, labore iste temporibus deleniti veniam voluptatem natus dolore amet architecto exercitationem fuga facere nesciunt soluta quae ducimus placeat perspiciatis vitae dignissimos.',
-        show: false,
+          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae quis, quia nihil veniam quaerat molestias dolores in delectus adipisci. Fuga, nostrum rerum! Quas commodi accusantium sit consequatur.',
       },
       {
         title: 'CRMD',
@@ -80,13 +72,21 @@ export default {
         image: '../../assets/test.jpg',
         link: '#',
         description:
-          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae quis, quia nihil veniam quaerat molestias dolores in delectus adipisci. Fuga, nostrum rerum! Quas commodi accusantium sit consequatur nam sapiente, labore iste temporibus deleniti veniam voluptatem natus dolore amet architecto exercitationem fuga facere nesciunt soluta quae ducimus placeat perspiciatis vitae dignissimos.',
-        show: false,
+          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae quis, quia nihil veniam quaerat molestias dolores in delectus adipisci. Fuga, nostrum rerum! Quas commodi accusantium sit consequatur nam sapiente, labore iste temporibus deleniti veniam voluptatem natus dolore amet architecto exercitationem fuga facere nesciunt.',
       },
     ],
   }),
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+#page-heading {
+  text-align: center;
+  color: #808080;
+  h1 {
+    font-weight: 700;
+    color: #3949ab;
+    font-size: 2em;
+  }
+}
 </style>
