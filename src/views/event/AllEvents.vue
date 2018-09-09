@@ -12,14 +12,13 @@
             <v-card>
               <v-img src="../../assets/test.jpg"></v-img>
               <v-card-title primary-title>
-                <div class="text-xs-center">
-                  <h3 class="headline mb-0">{{event.title}}</h3>
-                  <div class="grey--text mb-2">{{event.host}}</div>
-                  <p>{{event.description}}</p>
+                <div class="text-xs-center mx-auto">
+                  <h3 class="headline mb-1">{{event.title}}</h3>
+                  <div class="grey--text">{{event.host}}</div>
                 </div>
               </v-card-title>
               <v-card-actions>
-                <v-btn class="mx-auto" :to="event.link" flat color="indigo">Register</v-btn>
+                <v-btn class="mx-auto" :to="event.link" flat color="indigo">More Info</v-btn>
               </v-card-actions>
             </v-card>
           </v-flex>
@@ -38,7 +37,7 @@ export default {
         title: 'Synergy',
         host: 'Students Council',
         image: '../../assets/test.jpg',
-        link: '#',
+        link: '/event/1',
         description:
           'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae quis, quia nihil veniam quaerat molestias dolores in delectus adipisci.',
       },
@@ -46,7 +45,7 @@ export default {
         title: 'Euphoria',
         host: 'Students Council',
         image: '../../assets/test.jpg',
-        link: '#',
+        link: '/event/1',
         description:
           'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae quis, quia nihil veniam quaerat molestias dolores in delectus adipisci. Fuga, nostrum rerum! Quas commodi accusantium sit consequatur nam sapiente, labore iste temporibus deleniti veniam voluptatem natus dolore amet architecto exercitationem.',
       },
@@ -54,7 +53,7 @@ export default {
         title: 'Crescendo',
         host: 'Students Council',
         image: '../../assets/test.jpg',
-        link: '#',
+        link: '/event/1',
         description:
           'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae quis, quia nihil veniam quaerat molestias dolores in delectus adipisci. Fuga, nostrum rerum! Quas commodi accusantium sit consequatur nam sapiente, labore iste.',
       },
@@ -62,7 +61,7 @@ export default {
         title: 'Athlos',
         host: 'Students Council',
         image: '../../assets/test.jpg',
-        link: '#',
+        link: '/event/1',
         description:
           'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae quis, quia nihil veniam quaerat molestias dolores in delectus adipisci. Fuga, nostrum rerum! Quas commodi accusantium sit consequatur.',
       },
@@ -70,7 +69,7 @@ export default {
         title: 'CRMD',
         host: 'Students Council',
         image: '../../assets/test.jpg',
-        link: '#',
+        link: '/event/1',
         description:
           'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae quis, quia nihil veniam quaerat molestias dolores in delectus adipisci. Fuga, nostrum rerum! Quas commodi accusantium sit consequatur nam sapiente, labore iste temporibus deleniti veniam voluptatem natus dolore amet architecto exercitationem fuga facere nesciunt.',
       },
