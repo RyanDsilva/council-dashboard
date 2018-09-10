@@ -8,12 +8,12 @@
           <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis sequi explicabo nobis iste rerum maiores ipsum esse facilis atque doloribus exercitationem nihil, non at laudantium tenetur optio dicta amet mollitia. Illum, alias fugit culpa nemo veritatis ex possimus iusto placeat quae est sit neque dolores repellendus iure impedit, atque qui. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis sequi explicabo nobis iste rerum maiores ipsum esse facilis atque doloribus exercitationem nihil, non at laudantium tenetur optio dicta amet mollitia. Illum, alias fugit culpa nemo veritatis ex possimus iusto placeat quae est sit neque dolores repellendus iure impedit, atque qui.</p>
         </div>
         <v-layout row wrap>
-          <v-flex v-for="event in events" :key="event.title" xs12 md6 lg3>
+          <v-flex v-for="event in events" :key="event.name" xs12 md6 lg3>
             <v-card>
               <v-img src="../../assets/test.jpg"></v-img>
               <v-card-title primary-title>
                 <div class="text-xs-center mx-auto">
-                  <h3 class="headline mb-1">{{event.title}}</h3>
+                  <h3 class="headline mb-1">{{event.name}}</h3>
                   <div class="grey--text">{{event.host}}</div>
                 </div>
               </v-card-title>
@@ -29,52 +29,31 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'AllEvents',
   data: () => ({
-    events: [
-      {
-        title: 'Synergy',
-        host: 'Students Council',
-        image: '../../assets/test.jpg',
-        link: '/event/1',
-        description:
-          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae quis, quia nihil veniam quaerat molestias dolores in delectus adipisci.',
-      },
-      {
-        title: 'Euphoria',
-        host: 'Students Council',
-        image: '../../assets/test.jpg',
-        link: '/event/1',
-        description:
-          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae quis, quia nihil veniam quaerat molestias dolores in delectus adipisci. Fuga, nostrum rerum! Quas commodi accusantium sit consequatur nam sapiente, labore iste temporibus deleniti veniam voluptatem natus dolore amet architecto exercitationem.',
-      },
-      {
-        title: 'Crescendo',
-        host: 'Students Council',
-        image: '../../assets/test.jpg',
-        link: '/event/1',
-        description:
-          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae quis, quia nihil veniam quaerat molestias dolores in delectus adipisci. Fuga, nostrum rerum! Quas commodi accusantium sit consequatur nam sapiente, labore iste.',
-      },
-      {
-        title: 'Athlos',
-        host: 'Students Council',
-        image: '../../assets/test.jpg',
-        link: '/event/1',
-        description:
-          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae quis, quia nihil veniam quaerat molestias dolores in delectus adipisci. Fuga, nostrum rerum! Quas commodi accusantium sit consequatur.',
-      },
-      {
-        title: 'CRMD',
-        host: 'Students Council',
-        image: '../../assets/test.jpg',
-        link: '/event/1',
-        description:
-          'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae quis, quia nihil veniam quaerat molestias dolores in delectus adipisci. Fuga, nostrum rerum! Quas commodi accusantium sit consequatur nam sapiente, labore iste temporibus deleniti veniam voluptatem natus dolore amet architecto exercitationem fuga facere nesciunt.',
-      },
-    ],
+    events: [],
+    error: '',
   }),
+  created() {
+    axios
+      .get('event/all')
+      .then(res => {
+        const data = res.data;
+        // eslint-disable-next-line
+        for (const eventName in data) {
+          const event = data[eventName];
+          // eslint-disable-next-line
+          event.link = '/event/' + event._id;
+          this.events.push(event);
+        }
+      })
+      .catch(err => {
+        this.error = err.message;
+      });
+  },
 };
 </script>
 

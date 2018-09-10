@@ -1,7 +1,7 @@
-import Axios from 'axios';
+import axios from 'axios';
 
-export default () => {
-  return Axios.create({
-    baseURL: `https://council-dashboard.herokuapp.com/`,
-  });
-};
+const server = axios.create({
+  baseURL: '127.0.0.1:3000',
+});
+
+export default server;

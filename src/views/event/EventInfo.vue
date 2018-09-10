@@ -6,7 +6,8 @@
           <v-img class="poster" src="../../assets/test.jpg" width="100%" height="400"></v-img>
         </v-flex>
         <v-flex xs12 sm6 lg5 class="text-xs-center my-auto">
-          <div class="header">{{event.title}}</div>
+          <div class="header">{{event.name}}</div>
+          <small class="font-weight-light grey--text ">{{event.type}}</small>
           <hr class="my-2">
           <div class="display-1 font-weight-light grey--text ">{{event.host}}</div>
         </v-flex>
@@ -33,20 +34,30 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'EventInfo',
   data: () => ({
-    event: {
-      title: 'Synergy',
-      host: "Students' Council",
-      image: '../../assets/test.jpg',
-      description:
-        'Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae quis, quia nihil veniam quaerat molestias dolores in delectus adipisci. Lorem ipsum dolor sit amet consectetur adipisicing elit. Repudiandae quis, quia nihil veniam quaerat molestias dolores in delectus adipisci.',
-      link: '#',
-      date: '22/08/2018',
-      time: '2pm',
-    },
+    event: {},
+    error: '',
   }),
+  created() {
+    const id = this.$route.params.id;
+    const link = '/event/' + id;
+    axios
+      .get(link)
+      .then(res => {
+        const data = res.data;
+        this.event = data;
+        this.event.id = id;
+        this.event.link = '/event/' + this.event.id + '/register';
+        console.log(this.event);
+      })
+      .catch(err => {
+        this.error = err.message;
+      });
+  },
 };
 </script>
 

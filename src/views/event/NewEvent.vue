@@ -22,6 +22,8 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'NewEvent',
   data: () => ({
@@ -37,8 +39,18 @@ export default {
   }),
   methods: {
     submit() {
-      // eslint-disable-next-line
-      console.log(this.event);
+      // this.event.host = this.currentUser._id;
+      axios
+        .post('/event/create', this.event)
+        .then(res => {
+          // eslint-disable-next-line
+          console.log(res);
+          this.$router.push('/event/all');
+        })
+        .catch(err => {
+          // eslint-disable-next-line
+          console.log(err);
+        });
     },
   },
 };
