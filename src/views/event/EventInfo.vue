@@ -44,6 +44,7 @@ export default {
   }),
   created() {
     const id = this.$route.params.id;
+    // eslint-disable-next-line
     const link = '/event/' + id;
     axios
       .get(link)
@@ -51,7 +52,9 @@ export default {
         const data = res.data;
         this.event = data;
         this.event.id = id;
+        // eslint-disable-next-line
         this.event.link = '/event/' + this.event.id + '/register';
+        // eslint-disable-next-line
         console.log(this.event);
       })
       .catch(err => {
