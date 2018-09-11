@@ -1,7 +1,6 @@
 <template>
-  <div class="index">
-    <h1>Council Dashboard</h1>
-    <p>Something Isometric coming soon</p>
+  <div id="index">
+    <v-img class="heroSVG ml-auto" src="../assets/svg/collab.svg"></v-img>
   </div>
 </template>
 
@@ -11,5 +10,12 @@ export default {
 };
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+#index {
+  background-color: #bedee5;
+}
+.heroSVG {
+  width: 50%;
+  height: 50%;
+}
 </style>
