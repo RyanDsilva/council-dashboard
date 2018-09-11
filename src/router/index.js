@@ -9,7 +9,6 @@ import EventInfo from '@/views/event/EventInfo';
 Vue.use(Router);
 
 export default new Router({
-  mode: 'history',
   routes: [
     {
       path: '/',
