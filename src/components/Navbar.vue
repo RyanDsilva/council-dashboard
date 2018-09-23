@@ -7,7 +7,7 @@
             <img src="../assets/logo.png">
           </v-list-tile-avatar>
           <v-list-tile-content>
-            <v-list-tile-title class="council-name">{{council}}</v-list-tile-title>
+            <v-list-tile-title class="council-name">KOLLAB</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
       </v-list>
@@ -18,9 +18,19 @@
             <v-list-tile-title>Home</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
-        <v-list-tile to="/login" class="side-links">
+        <v-list-tile v-if="!isLoggedIn" to="/login" class="side-links">
           <v-list-tile-content>
             <v-list-tile-title>Council Login</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+        <v-list-tile v-if="isLoggedIn" :to="makeLink" class="side-links">
+          <v-list-tile-content>
+            <v-list-tile-title>Dashboard</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
+        <v-list-tile to="/user/create" class="side-links">
+          <v-list-tile-content>
+            <v-list-tile-title>Users</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
         <v-list-tile to="/event/all" class="side-links">
@@ -33,11 +43,12 @@
     <v-toolbar color="indigo darken-1" dark>
       <v-toolbar-side-icon @click.stop="drawer = !drawer"></v-toolbar-side-icon>
       <v-toolbar-title class="white--text main">
-        <router-link to="/">Council Dashboard</router-link>
+        <router-link to="/">KOLLAB</router-link>
       </v-toolbar-title>
       <v-spacer></v-spacer>
       <v-toolbar-items class="hidden-sm-and-down">
         <v-btn v-if="!isLoggedIn" to="/login" flat>Council Login</v-btn>
+        <v-btn to="/user/create" flat>Users</v-btn>
         <v-btn v-if="isLoggedIn" :to="makeLink" flat>Dashboard</v-btn>
         <v-btn to="/event/all" flat>Events</v-btn>
       </v-toolbar-items>
