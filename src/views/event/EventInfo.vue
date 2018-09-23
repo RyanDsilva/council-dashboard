@@ -18,14 +18,15 @@
           <p class="description">{{event.description}}</p>
           <div class="date">
             <strong>Date: </strong>
-            {{event.date}}
+            {{event.date.substring(0,10)}}
           </div>
           <div class="time">
-            <strong>Time: </strong>
-            {{event.time}}
+            <strong>Duration: </strong>
+            {{event.duration}}
           </div>
           <div class="register text-xs-center my-1">
             <v-btn :to="event.link" color="indigo" dark class="register-btn">Register</v-btn>
+            <v-btn :to="event.edit" color="indigo" dark class="register-btn mx-2">Edit Event</v-btn>
           </div>
         </v-flex>
       </v-layout>
@@ -43,19 +44,16 @@ export default {
     error: '',
   }),
   created() {
-    const id = this.$route.params.id;
-    // eslint-disable-next-line
-    const link = '/event/' + id;
     axios
-      .get(link)
+      // eslint-disable-next-line
+      .get('/event/' + this.$route.params.id)
       .then(res => {
         const data = res.data;
         this.event = data;
-        this.event.id = id;
         // eslint-disable-next-line
-        this.event.link = '/event/' + this.event.id + '/register';
+        this.event.link = '/event/' + this.$route.params.id + '/register';
         // eslint-disable-next-line
-        console.log(this.event);
+        this.event.edit = '/event/' + this.$route.params.id + '/edit';
       })
       .catch(err => {
         this.error = err.message;

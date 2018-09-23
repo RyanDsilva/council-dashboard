@@ -7,6 +7,11 @@
           <h1>Events</h1>
           <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis sequi explicabo nobis iste rerum maiores ipsum esse facilis atque doloribus exercitationem nihil, non at laudantium tenetur optio dicta amet mollitia. Illum, alias fugit culpa nemo veritatis ex possimus iusto placeat quae est sit neque dolores repellendus iure impedit, atque qui. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis sequi explicabo nobis iste rerum maiores ipsum esse facilis atque doloribus exercitationem nihil, non at laudantium tenetur optio dicta amet mollitia. Illum, alias fugit culpa nemo veritatis ex possimus iusto placeat quae est sit neque dolores repellendus iure impedit, atque qui.</p>
         </div>
+        <div class="text-xs-center">
+          <v-btn to="/event/create" fab dark color="indigo">
+            <v-icon>add</v-icon>
+          </v-btn>
+        </div>
         <v-layout row wrap>
           <v-flex v-for="event in events" :key="event.name" xs12 md6 lg3>
             <v-card>

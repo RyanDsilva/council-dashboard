@@ -22,9 +22,9 @@ const router = new Router({
       path: '/event/create',
       name: 'NewEvent',
       component: NewEvent,
-      meta: {
-        requiresAuth: true,
-      },
+      // meta: {
+      //   requiresAuth: true,
+      // },
     },
     {
       path: '/event/all',
@@ -40,10 +40,10 @@ const router = new Router({
       path: '/event/:id/edit',
       name: 'EditEvent',
       component: EditEvent,
-      meta: {
-        requiresAuth: true,
-        is_admin: true,
-      },
+      // meta: {
+      //   requiresAuth: true,
+      //   is_admin: true,
+      // },
     },
     {
       path: '/user/create',
@@ -54,9 +54,9 @@ const router = new Router({
       path: '/user/:rollNo',
       name: 'UserDashboard',
       component: UserDashboard,
-      meta: {
-        requiresAuth: true,
-      },
+      // meta: {
+      //   requiresAuth: true,
+      // },
     },
     {
       path: '*',

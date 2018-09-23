@@ -2,8 +2,8 @@
   <div id="add-event">
     <v-container class="wrapper" grid-list-md>
       <v-layout row wrap>
-        <v-flex xs12>
-          <h2 class="new-header text-xs-center">Add New Event</h2>
+        <v-flex xs12 class="text-xs-center">
+          <h2 class="new-header">Add New Event</h2>
           <v-form ref="form" lazy-validation>
             <v-text-field v-model="event.name" label="Event Name" required></v-text-field>
             <v-textarea v-model="event.description" label="Event Description" hint="Detailed Event Description preffered."></v-textarea>
@@ -35,21 +35,17 @@ export default {
       date: '',
       host: '',
     },
+    error: '',
     items: ['Technical', 'Non-Technical', 'Sports'],
   }),
   methods: {
     submit() {
-      // this.event.host = this.currentUser._id;
+      // this.event.host = this.$store.state.user._id;
       axios
-        .post('/event/create', this.event)
-        .then(res => {
-          // eslint-disable-next-line
-          console.log(res);
-          this.$router.push('/event/all');
-        })
+        .post('/event/create', { event: this.event })
+        .then(this.$router.push('/event/all'))
         .catch(err => {
-          // eslint-disable-next-line
-          console.log(err);
+          this.error = err.message;
         });
     },
   },
@@ -59,6 +55,11 @@ export default {
 <style scoped>
 .wrapper {
   width: 80%;
+}
+@media (min-width: 992px) {
+  .wrapper {
+    width: 50%;
+  }
 }
 .new-header {
   color: #39499f;

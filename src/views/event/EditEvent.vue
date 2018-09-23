@@ -2,7 +2,7 @@
   <div id="edit-event">
     <v-container class="wrapper" grid-list-md>
       <v-layout row wrap>
-        <v-flex xs12>
+        <v-flex xs12 class="text-xs-center">
           <h2 class="new-header text-xs-center">Edit {{event.name}}</h2>
           <v-form ref="form" lazy-validation>
             <v-text-field v-model="event.name" label="Event Name" required></v-text-field>
@@ -22,23 +22,36 @@
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
   name: 'EditEvent',
   data: () => ({
-    event: {
-      name: 'Synergy',
-      description: 'Blah Blah Blah',
-      type: 'Technical',
-      duration: '2Hrs',
-      date: '2018-08-09',
-      host: "Students' Council",
-    },
+    event: {},
+    error: '',
     items: ['Technical', 'Non-Technical', 'Sports'],
   }),
+  created() {
+    axios
+      // eslint-disable-next-line
+      .get('/event/' + this.$route.params.id + '/edit')
+      .then(res => {
+        const data = res.data;
+        this.event = data;
+      })
+      .catch(err => {
+        this.error = err.message;
+      });
+  },
   methods: {
     submit() {
-      // eslint-disable-next-line
-      console.log(this.event);
+      axios
+        // eslint-disable-next-line
+        .put('/event/' + this.$route.params.id + '/edit', { event: this.event })
+        .then(this.$router.push('/event/all'))
+        .catch(err => {
+          this.error = err.message;
+        });
     },
   },
 };
@@ -47,6 +60,11 @@ export default {
 <style scoped>
 .wrapper {
   width: 80%;
+}
+@media (min-width: 992px) {
+  .wrapper {
+    width: 50%;
+  }
 }
 .new-header {
   color: #39499f;
