@@ -1,15 +1,17 @@
-// The Vue build version to load with the `import` command
-// (runtime-only or standalone) has been set in webpack.base.conf with an alias.
 import 'babel-polyfill';
 import Vue from 'vue';
+import VueSession from 'vue-session';
 import Vuetify from 'vuetify';
 import axios from 'axios';
 import 'vuetify/dist/vuetify.min.css';
 import App from './App';
 import router from './router';
+import store from './store';
 
 Vue.use(Vuetify);
-
+Vue.use(VueSession, {
+  persist: true,
+});
 Vue.config.productionTip = false;
 
 axios.defaults.baseURL = 'http://localhost:3000';
@@ -18,6 +20,7 @@ axios.defaults.baseURL = 'http://localhost:3000';
 new Vue({
   el: '#app',
   router,
+  store,
   components: { App },
   template: '<App/>',
 });
