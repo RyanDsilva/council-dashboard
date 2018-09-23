@@ -5,7 +5,8 @@ Vue.use(Vuex);
 
 const store = new Vuex.Store({
   state: {
-    user: !!localStorage.getItem('user'),
+    user: localStorage.getItem('user'),
+    isLoggedIn: !!localStorage.getItem('user'),
   },
 });
 
