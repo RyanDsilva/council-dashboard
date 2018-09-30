@@ -6,7 +6,7 @@
           <v-card raised ripple class="mx-auto my-5 card-wrapper">
             <v-card-text class="form-content">
               <h1 class="login-title">Council Login</h1>
-              <v-form v-model="valid">
+              <v-form>
                 <v-text-field v-model="username" type="text" label="Username" required></v-text-field>
                 <v-text-field v-model="password" type="password" label="Password" required></v-text-field>
                 <v-btn color="indigo" dark @click.prevent="login">Login</v-btn>
@@ -33,7 +33,21 @@ export default {
   }),
   methods: {
     login() {
-      alert('Login Clicked!');
+      axios
+        .post('/council/login', {
+          username: this.username,
+          password: this.password,
+        })
+        .then(res => {
+          const data = res.data;
+          this.$session.start();
+          this.$session.set('user', data);
+          localStorage.setItem('user', JSON.stringify(data));
+          this.$router.push('/event/all');
+        })
+        .catch(err => {
+          this.error = err.message;
+        });
     },
   },
 };

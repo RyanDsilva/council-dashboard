@@ -23,7 +23,7 @@
                 </div>
               </v-card-title>
               <v-card-actions>
-                <v-btn class="mx-auto" :to="event.link" flat color="indigo">More Info</v-btn>
+                <v-btn class="mx-auto" :to="event.link" dark color="indigo">More Info</v-btn>
               </v-card-actions>
             </v-card>
           </v-flex>

@@ -8,6 +8,12 @@ const store = new Vuex.Store({
     user: localStorage.getItem('user'),
     isLoggedIn: !!localStorage.getItem('user'),
   },
+  getters: {
+    // eslint-disable-next-line
+    getUser: state => {
+      return JSON.parse(state.user);
+    },
+  },
 });
 
 export default store;

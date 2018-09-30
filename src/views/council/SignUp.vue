@@ -49,7 +49,7 @@ export default {
           const data = res.data;
           this.$session.start();
           this.$session.set('user', data);
-          localStorage.setItem('user', data);
+          localStorage.setItem('user', JSON.stringify(data));
           this.$router.push('/event/all');
         })
         .catch(err => {
