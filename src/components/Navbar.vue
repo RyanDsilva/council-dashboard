@@ -38,6 +38,11 @@
             <v-list-tile-title>Events</v-list-tile-title>
           </v-list-tile-content>
         </v-list-tile>
+        <v-list-tile v-if="isLoggedIn" @click.prevent="logout" class="side-links">
+          <v-list-tile-content>
+            <v-list-tile-title>Logout</v-list-tile-title>
+          </v-list-tile-content>
+        </v-list-tile>
       </v-list>
     </v-navigation-drawer>
     <v-toolbar color="indigo darken-1" dark>
@@ -51,13 +56,14 @@
         <v-btn to="/user/create" flat>Users</v-btn>
         <v-btn v-if="isLoggedIn" :to="makeLink" flat>Dashboard</v-btn>
         <v-btn to="/event/all" flat>Events</v-btn>
+        <v-btn v-if="isLoggedIn" @click.prevent="logout" flat>Logout</v-btn>
       </v-toolbar-items>
     </v-toolbar>
   </span>
 </template>
 
 <script>
-import mapState from 'vuex';
+import axios from 'axios';
 
 export default {
   name: 'Navbar',
@@ -65,14 +71,34 @@ export default {
   data: () => {
     return {
       drawer: false,
-      council: 'CSI',
+      error: '',
     };
   },
+  methods: {
+    logout() {
+      axios
+        .get('/council/logout')
+        // eslint-disable-next-line
+        .then(res => {
+          this.$session.destroy();
+          localStorage.removeItem('user');
+          this.$router.push('/');
+        })
+        .catch(err => {
+          this.error = err.message;
+        });
+    },
+  },
   computed: {
-    ...mapState[('user', 'isLoggedIn')],
     makeLink() {
       // eslint-disable-next-line
-      return '/council' + this.$store.state.user._id + '/dashboard';
+      return '/council/' + this.user._id + '/dashboard';
+    },
+    user() {
+      return this.$store.getters.getUser;
+    },
+    isLoggedIn() {
+      return this.$store.state.isLoggedIn;
     },
   },
 };

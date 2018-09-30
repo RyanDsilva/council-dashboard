@@ -2,6 +2,10 @@ import Vue from 'vue';
 import Router from 'vue-router';
 import Index from '@/views/Index';
 import NewEvent from '@/views/event/NewEvent';
+import Login from '@/views/council/Login';
+import SignUp from '@/views/council/SignUp';
+import Dashboard from '@/views/council/Dashboard';
+import EditCouncil from '@/views/council/EditCouncil';
 import AllEvents from '@/views/event/AllEvents';
 import EditEvent from '@/views/event/EditEvent';
 import EventInfo from '@/views/event/EventInfo';
@@ -17,6 +21,32 @@ const router = new Router({
       path: '/',
       name: 'Index',
       component: Index,
+    },
+    {
+      path: '/login',
+      name: 'Login',
+      component: Login,
+    },
+    {
+      path: '/signup',
+      name: 'Login',
+      component: SignUp,
+    },
+    {
+      path: '/council/:id/dashboard',
+      name: 'Dashboard',
+      component: Dashboard,
+      // meta: {
+      //   requiresAuth: true,
+      // },
+    },
+    {
+      path: '/council/:id/edit',
+      name: 'EditCouncil',
+      component: EditCouncil,
+      // meta: {
+      //   requiresAuth: true,
+      // },
     },
     {
       path: '/event/create',
@@ -68,7 +98,7 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
-    if (localStorage.getItem('user') == null) {
+    if (this.$store.state.user == null) {
       next({
         path: '/login',
         params: { nextUrl: to.fullPath },
