@@ -1,9 +1,13 @@
 <template>
-  <div id="app">
-    <Navbar></Navbar>
-    <router-view/>
-    <Footer></Footer>
-  </div>
+  <v-app>
+    <div id="app">
+      <Navbar></Navbar>
+      <v-content>
+        <router-view/>
+      </v-content>
+      <Footer></Footer>
+    </div>
+  </v-app>
 </template>
 
 <script>
