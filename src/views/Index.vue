@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div id="index-page">
     <section id="hero-kollab">
       <v-container>
         <v-layout row wrap>
@@ -19,11 +19,47 @@
       </v-container>
     </section>
     <br>
-    <section id="kollab-content">
+    <section id="kollab-content" class="my-4">
       <v-container grid-list-md>
         <v-layout row wrap>
-          <v-flex xs12>
-            <h1>Test Content</h1>
+          <v-flex xs12 sm4>
+            <v-card color="blue-grey" class="white--text">
+              <v-card-title primary-title>
+                <div class="headline">Common Council Hub</div>
+                <div>
+                  A one-place access to all the councils and their activities in the university / college
+                </div>
+              </v-card-title>
+              <v-card-actions>
+                <v-btn flat class="mx-auto" dark to="/signup">Register as Council</v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-flex>
+          <v-flex xs12 sm4>
+            <v-card color="blue-grey" class="white--text">
+              <v-card-title primary-title>
+                <div class="headline">Extensive Events Area</div>
+                <div>
+                  One page glance at everything happening around in the college / university
+                </div>
+              </v-card-title>
+              <v-card-actions>
+                <v-btn flat class="mx-auto" dark to="/event/all">Explore Events</v-btn>
+              </v-card-actions>
+            </v-card>
+          </v-flex>
+          <v-flex xs12 sm4>
+            <v-card color="blue-grey" class="white--text">
+              <v-card-title primary-title>
+                <div class="headline">User Area</div>
+                <div>
+                  Register and be part of councils with the simple, user-friendly UI of the user area
+                </div>
+              </v-card-title>
+              <v-card-actions>
+                <v-btn flat class="mx-auto" dark to="/user/create">User Area</v-btn>
+              </v-card-actions>
+            </v-card>
           </v-flex>
         </v-layout>
       </v-container>
@@ -38,6 +74,9 @@ export default {
 </script>
 
 <style scoped lang="scss">
+#index-page {
+  background-color: #ffffff;
+}
 #hero-kollab {
   background-image: url('../assets/img/welcome-bg.png');
   background-position: center;
