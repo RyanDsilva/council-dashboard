@@ -11,15 +11,55 @@
                 <v-text-field type="email" label="Email" required></v-text-field>
                 <v-text-field type="number" label="Contact" required></v-text-field>
                 <v-text-field type="number" label="Roll No" required></v-text-field>
-                <v-text-field type="text" label="Year" required></v-text-field>
-                <v-text-field type="text" label="Branch" required></v-text-field>
-                <div>
-                <v-btn color="indigo" dark>Done</v-btn>
-                </div>  
+               
+                <div class="apple">
+                  <v-menu offset-y>
+                     <v-btn
+                      slot="activator"
+                      color="indigo"
+                      dark
+                     >
+                    Year
+                    </v-btn>
+                 <v-list>
+                  <v-list-tile
+                    v-for="(item, index) in items"
+                      :key="index"
+                      @click=""
+                      >
+                  <v-list-tile-title>{{ item.title }}</v-list-tile-title>
+                  </v-list-tile>
+                 </v-list>
+              </v-menu>
+             
+             
+                  <v-menu offset-y>
+                     <v-btn
+                      slot="activator"
+                      color="indigo"
+                      dark
+                     >
+                    Branch
+                    </v-btn>
+                 <v-list>
+                  <v-list-tile
+                    v-for="(option, index) in options"
+                      :key="index"
+                      @click=""
+                      >
+                  <v-list-tile-title>{{ option.title }}</v-list-tile-title>
+                  </v-list-tile>
+                 </v-list>
+              </v-menu>
+             </div>
+          
+                
+                <v-btn class="banana" color="indigo" dark>Done</v-btn>
+                
               </v-form>
               
             </v-card-text>
-          </v-card>
+      </v-card>
        
       </v-flex>
     </v-layout>
@@ -29,20 +69,26 @@
 </template>
 
 <script>
-import axios from 'axios';
+
+
 export default {
-  name: 'UserCreate',
-  methods: {
-    done() {
-      axios
-        .put('/user/' + this.$route.params.id + '/edit', { user: this.user })
-        .then(this.$router.push('/event/all'))
-        .catch(err => {
-          this.error = err.message;
-        });
-    },
-  },
-};
+    data: () => ({
+      items: [
+        { title: 'FE' },
+        { title: 'SE' },
+        { title: 'TE' },
+        { title: 'BE' }
+      ],
+
+      options: [
+        { title: 'CS' },
+        { title: 'IT' },
+        { title: 'ELEX' },
+        { title: 'PROD' }
+
+      ]
+    })
+  }
 </script>
 
 <style scoped lang="scss">
@@ -63,4 +109,11 @@ export default {
   }
 }
 
+.apple{
+  padding-left: 0.1em;
+}
+
+.banana{
+  margin-top: 2em;
+}
 </style>
