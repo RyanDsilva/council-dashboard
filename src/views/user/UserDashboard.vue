@@ -1,8 +1,9 @@
 <template>
-  <div class="dashbaord"></div>
+  <div class="dashboard"></div>
 </template>
 
 <script>
+
 export default {
   name: 'UserDashboard',
 };
