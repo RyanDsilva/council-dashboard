@@ -147,40 +147,19 @@
 </template>
 
 <script>
-  import axios from 'axios';
+  
   export default {
     name: 'Dashboard',
     data: () => ({
       dialog: false,
-      users:[],
-      councils:[],
+      council:{},
       error:'',
 
 
     }),
     methods: {
-      addEvent() {
-        axios
-          // eslint-disable-next-line
-          .put('/event/' + this.$route.params.id + '/edit', {
-            event: this.event
-          })
-          .then(this.$router.push('/event/all'))
-          .catch(err => {
-            this.error = err.message;
-          });
-    },
-    deleteCouncil() {
-      axios
-      .delete('/council/' + this.$route.params.id + '/delete',{
-        council:this.council
-      })
-      .then(this.$router.push('/council/login'))
-      .catch(err => {
-            this.error = err.message;
-        });
-      },
-    },
+     
+    }
 };
 
  
