@@ -5,53 +5,26 @@
       <v-flex xs12 class="text-xs-center">
       <v-card raised ripple class="mx-auto my-5 card-wrapper">
             <v-card-text class="form-content">
-              <h1 class="whitu">Register</h1>
+              <h1 class="header">Register</h1>
               <v-form>
-                <v-text-field type="text" label="Username" required></v-text-field>
-                <v-text-field type="email" label="Email" required></v-text-field>
-                <v-text-field type="number" label="Contact" required></v-text-field>
-                <v-text-field type="number" label="Roll No" required></v-text-field>
+                <v-text-field v-model="name" type="text" label="Username" required></v-text-field>
+                <v-text-field v-model="email" type="email" label="Email" required></v-text-field>
+                <v-text-field v-model="phone" type="number" label="Contact" required></v-text-field>
+                <v-text-field v-model="rollno" type="number" label="Roll No" required></v-text-field>
                
-                <div class="apple">
-                  <v-menu offset-y>
-                     <v-btn
-                      slot="activator"
-                      color="indigo"
-                      dark
-                     >
-                    Year
-                    </v-btn>
-                 <v-list>
-                  <v-list-tile
-                    v-for="(item, index) in items"
-                      :key="index"
-                      @click=""
-                      >
-                  <v-list-tile-title>{{ item.title }}</v-list-tile-title>
-                  </v-list-tile>
-                 </v-list>
-              </v-menu>
+                
+                  <v-select
+                      :items="items"
+                      label="Year"
+                   ></v-select>
+                  
+                  <v-select
+                      :items="options"
+                      label="Branch"
+                   ></v-select>
              
-             
-                  <v-menu offset-y>
-                     <v-btn
-                      slot="activator"
-                      color="indigo"
-                      dark
-                     >
-                    Branch
-                    </v-btn>
-                 <v-list>
-                  <v-list-tile
-                    v-for="(option, index) in options"
-                      :key="index"
-                      @click=""
-                      >
-                  <v-list-tile-title>{{ option.title }}</v-list-tile-title>
-                  </v-list-tile>
-                 </v-list>
-              </v-menu>
-             </div>
+                  
+     
           
                 
                 <v-btn class="banana" color="indigo" dark>Done</v-btn>
@@ -69,30 +42,23 @@
 </template>
 
 <script>
-
-
 export default {
     data: () => ({
-      items: [
-        { title: 'FE' },
-        { title: 'SE' },
-        { title: 'TE' },
-        { title: 'BE' }
-      ],
+      items: ['FE', 'SE', 'TE', 'BE'],
+      options: ['CS','IT','ELEX','PROD'],
+      name: '',
+      email:'',
+      phone:'',
+      rollno:'',
 
-      options: [
-        { title: 'CS' },
-        { title: 'IT' },
-        { title: 'ELEX' },
-        { title: 'PROD' }
-
-      ]
     })
   }
+
+
 </script>
 
 <style scoped lang="scss">
-.whitu{
+.header{
   font-weight: 700;
   color: #39499f;
 
@@ -109,11 +75,7 @@ export default {
   }
 }
 
-.apple{
-  padding-left: 0.1em;
-}
 
-.banana{
-  margin-top: 2em;
-}
+
+
 </style>
