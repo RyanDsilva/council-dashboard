@@ -11,20 +11,20 @@
                 <v-text-field v-model="email" type="email" label="Email" required></v-text-field>
                 <v-text-field v-model="phone" type="number" label="Contact" required></v-text-field>
                 <v-text-field v-model="rollno" type="number" label="Roll No" required></v-text-field>
-               
                 
-                  <v-select
+                <v-flex xs14 sm10 d-flex >
+                  <v-select class="year"
                       :items="items"
                       label="Year"
                    ></v-select>
-                  
-                  <v-select
+                
+                  <v-select class="branch"
                       :items="options"
                       label="Branch"
                    ></v-select>
              
-                  
-     
+                </v-flex>
+                
           
                 
                 <v-btn class="banana" color="indigo" dark>Done</v-btn>
@@ -75,7 +75,12 @@ export default {
   }
 }
 
+.year{
+  padding-left: 5em;
+}
 
-
+.branch{
+  padding-left: 3em;
+}
 
 </style>
