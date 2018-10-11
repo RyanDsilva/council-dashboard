@@ -29,7 +29,7 @@ const router = new Router({
     },
     {
       path: '/signup',
-      name: 'Login',
+      name: 'Signup',
       component: SignUp,
     },
     {

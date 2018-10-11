@@ -9,7 +9,7 @@
           <div class="header">{{event.name}}</div>
           <small class="font-weight-light grey--text ">{{event.type}}</small>
           <hr class="my-2">
-          <div class="display-1 font-weight-light grey--text ">{{event.host}}</div>
+          <div class="display-1 font-weight-light grey--text ">{{event.heldBy.name}}</div>
         </v-flex>
       </v-layout>
       <v-layout row wrap class="my-1">

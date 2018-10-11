@@ -33,20 +33,28 @@ export default {
       type: '',
       duration: '',
       date: '',
-      host: '',
+      heldBy: '',
     },
     error: '',
     items: ['Technical', 'Non-Technical', 'Sports'],
   }),
   methods: {
     submit() {
-      // this.event.host = this.$store.state.user._id;
+      // eslint-disable-next-line
+      this.event.heldBy = this.user._id;
+      console.log(this.user);
       axios
         .post('/event/create', { event: this.event })
         .then(this.$router.push('/event/all'))
         .catch(err => {
           this.error = err.message;
         });
+    },
+  },
+  computed: {
+    // eslint-disable-next-line
+    user() {
+      return this.$store.getters.getUser;
     },
   },
 };
