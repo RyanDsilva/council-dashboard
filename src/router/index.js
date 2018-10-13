@@ -10,7 +10,6 @@ import AllEvents from '@/views/event/AllEvents';
 import EditEvent from '@/views/event/EditEvent';
 import EventInfo from '@/views/event/EventInfo';
 import UserCreate from '@/views/user/UserCreate';
-import UserDashboard from '@/views/user/UserDashboard';
 import Error404 from '@/views/404';
 
 Vue.use(Router);
@@ -79,14 +78,6 @@ const router = new Router({
       path: '/user/create',
       name: 'UserCreate',
       component: UserCreate,
-    },
-    {
-      path: '/user/:rollNo',
-      name: 'UserDashboard',
-      component: UserDashboard,
-      // meta: {
-      //   requiresAuth: true,
-      // },
     },
     {
       path: '*',
