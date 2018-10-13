@@ -64,6 +64,7 @@
 
 <script>
 import axios from 'axios';
+import { mapState } from 'vuex';
 
 export default {
   name: 'Navbar',
@@ -90,6 +91,7 @@ export default {
     },
   },
   computed: {
+    ...mapState(['user', 'isLoggedIn']),
     makeLink() {
       // eslint-disable-next-line
       return '/council/' + this.user._id + '/dashboard';
