@@ -6,7 +6,7 @@
           <v-card raised class="text-xs-center">
             <v-card-title>
               <v-avatar size="300" class="mx-auto">
-                <v-img position="center center" src=""></v-img>
+                <v-img position="center center" src="../../assets/logo.png"></v-img>
               </v-avatar>
             </v-card-title>
             <v-card-text>
@@ -31,7 +31,7 @@
                 </v-list-tile>
               </v-list>
             </v-card-text>
-            <v-btn absolute dark fab bottom right color="indigo" :to="addMember">
+            <v-btn absolute dark fab bottom right color="indigo" class="my-2" :to="addMember">
               <v-icon>add</v-icon>
             </v-btn>
           </v-card>
@@ -46,7 +46,7 @@
       <v-layout row wrap>
         <v-flex xs12>
           <v-card raised class="text-xs-center">
-            <v-toolbar color="red lighten-2" dark>
+            <v-toolbar color="indigo" dark>
               <h3 class="mx-auto">Events</h3>
             </v-toolbar>
             <v-card-text>
@@ -57,7 +57,7 @@
                     <v-list-tile-sub-title>{{event.description}}</v-list-tile-sub-title>
                   </v-list-tile-content>
                   <v-list-tile-action>
-                    <v-btn to="#">View Registrations</v-btn>
+                    <v-btn dark color="indigo" large class="pa-2" :to="'/event/'+event._id+'/registrations'">View Registrations</v-btn>
                   </v-list-tile-action>
                 </v-list-tile>
               </v-list>
