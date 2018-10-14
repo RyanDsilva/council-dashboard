@@ -13,6 +13,7 @@ import EventInfo from '@/views/event/EventInfo';
 import Registrations from '@/views/event/Registrations';
 import UserCreate from '@/views/user/UserCreate';
 import UserInfo from '@/views/user/UserInfo';
+import Calendar from '@/views/Calendar';
 import Error404 from '@/views/404';
 
 Vue.use(Router);
@@ -33,6 +34,11 @@ const router = new Router({
       path: '/signup',
       name: 'Signup',
       component: SignUp,
+    },
+    {
+      path: '/calendar',
+      name: 'Calendar',
+      component: Calendar,
     },
     {
       path: '/council/:id/dashboard',
