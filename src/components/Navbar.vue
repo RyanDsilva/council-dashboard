@@ -96,7 +96,7 @@ export default {
     ...mapState(['user', 'isLoggedIn']),
     makeLink() {
       // eslint-disable-next-line
-      return '/council/' + this.user._id + '/dashboard';
+      return '/council/' + this.$store.getters.getUser._id + '/dashboard';
     },
   },
 };

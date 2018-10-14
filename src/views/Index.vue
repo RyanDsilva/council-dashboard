@@ -10,7 +10,7 @@
               <br>
               <v-btn to="/event/all" large color="deep-purple darken-1" raised dark>Search For Interesting Events!</v-btn>
               <br>
-          </div>
+            </div>
           </v-flex>
           <v-flex sm12 md6>
             <v-img src="../assets/svg/hero.svg"></v-img>
@@ -100,7 +100,5 @@ export default {
   #title-heading {
     margin: auto;
   }
-}
-#kollab-content {
 }
 </style>

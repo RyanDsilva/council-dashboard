@@ -15,6 +15,7 @@ import UserCreate from '@/views/user/UserCreate';
 import UserInfo from '@/views/user/UserInfo';
 import Calendar from '@/views/Calendar';
 import Error404 from '@/views/404';
+import store from '../store';
 
 Vue.use(Router);
 
@@ -44,33 +45,33 @@ const router = new Router({
       path: '/council/:id/dashboard',
       name: 'Dashboard',
       component: Dashboard,
-      // meta: {
-      //   requiresAuth: true,
-      // },
+      meta: {
+        requiresAuth: true,
+      },
     },
     {
       path: '/council/:id/members/add',
       name: 'AddMember',
       component: AddMember,
-      // meta: {
-      //   requiresAuth: true,
-      // },
+      meta: {
+        requiresAuth: true,
+      },
     },
     {
       path: '/council/:id/edit',
       name: 'EditCouncil',
       component: EditCouncil,
-      // meta: {
-      //   requiresAuth: true,
-      // },
+      meta: {
+        requiresAuth: true,
+      },
     },
     {
       path: '/event/create',
       name: 'NewEvent',
       component: NewEvent,
-      // meta: {
-      //   requiresAuth: true,
-      // },
+      meta: {
+        requiresAuth: true,
+      },
     },
     {
       path: '/event/all',
@@ -86,15 +87,17 @@ const router = new Router({
       path: '/event/:id/registrations',
       name: 'EventReg',
       component: Registrations,
+      meta: {
+        requiresAuth: true,
+      },
     },
     {
       path: '/event/:id/edit',
       name: 'EditEvent',
       component: EditEvent,
-      // meta: {
-      //   requiresAuth: true,
-      //   is_admin: true,
-      // },
+      meta: {
+        requiresAuth: true,
+      },
     },
     {
       path: '/user/create',
@@ -105,6 +108,9 @@ const router = new Router({
       path: '/users/all',
       name: 'UserInfo',
       component: UserInfo,
+      meta: {
+        requiresAuth: true,
+      },
     },
     {
       path: '*',
@@ -116,13 +122,13 @@ const router = new Router({
 
 router.beforeEach((to, from, next) => {
   if (to.matched.some(record => record.meta.requiresAuth)) {
-    if (this.$store.state.user == null) {
+    if (store.state.isLoggedIn === false) {
       next({
         path: '/login',
         params: { nextUrl: to.fullPath },
       });
     } else {
-      const user = JSON.parse(localStorage.getItem('user'));
+      const user = JSON.parse(store.state.user);
       if (to.matched.some(record => record.meta.is_admin)) {
         if (user.isAdmin) {
           next();

@@ -6,7 +6,8 @@ Vue.use(Vuex);
 const store = new Vuex.Store({
   state: {
     user: localStorage.getItem('user'),
-    isLoggedIn: !!localStorage.getItem('user'),
+    isLoggedIn: false,
+    events: [],
   },
   getters: {
     // eslint-disable-next-line
@@ -20,6 +21,9 @@ const store = new Vuex.Store({
     },
     setIsLoggedIn(state, val) {
       state.isLoggedIn = val;
+    },
+    setEvents(state, val) {
+      state.events = val;
     },
   },
 });
