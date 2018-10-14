@@ -9,8 +9,7 @@
             <v-textarea v-model="event.description" label="Event Description" hint="Detailed Event Description preffered."></v-textarea>
             <v-text-field v-model="event.duration" label="Event Duration" required></v-text-field>
             <v-select :items="items" label="Event Type" v-model="event.type" :placeholder="event.type"></v-select>
-            <div class="subheading mb-2">Select Date:</div>
-            <v-date-picker v-model="event.date" reactive required></v-date-picker>
+            <v-datetime-picker label="Date and Time" v-model="event.date"></v-datetime-picker>
             <div class="my-2 mx-auto">
               <v-btn @click="submit" color="indigo" dark>Edit Event</v-btn>
             </div>

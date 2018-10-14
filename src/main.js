@@ -6,12 +6,14 @@ import axios from 'axios';
 import FullCalendar from 'vue-full-calendar';
 import 'vuetify/dist/vuetify.min.css';
 import 'fullcalendar/dist/fullcalendar.css';
+import DatetimePicker from 'vuetify-datetime-picker';
 import App from './App';
 import router from './router';
 import store from './store';
 
 Vue.use(Vuetify);
 Vue.use(FullCalendar);
+Vue.use(DatetimePicker);
 Vue.use(VueSession, {
   persist: true,
 });
