@@ -18,6 +18,7 @@
               </v-form>
             </v-card-text>
           </v-card>
+          <v-btn color="indigo" dark to="/users/all">User Database</v-btn>
         </div>
       </v-flex>
     </v-layout>

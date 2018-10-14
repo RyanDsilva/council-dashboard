@@ -83,6 +83,8 @@ export default {
         .then(res => {
           this.$session.destroy();
           localStorage.removeItem('user');
+          this.$store.commit('setCurrentUser', null);
+          this.$store.commit('setIsLoggedIn', false);
           this.$router.push('/');
         })
         .catch(err => {
@@ -95,12 +97,6 @@ export default {
     makeLink() {
       // eslint-disable-next-line
       return '/council/' + this.user._id + '/dashboard';
-    },
-    user() {
-      return this.$store.getters.getUser;
-    },
-    isLoggedIn() {
-      return this.$store.state.isLoggedIn;
     },
   },
 };
