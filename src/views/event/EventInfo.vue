@@ -47,6 +47,7 @@
             </v-dialog>
             <v-btn :to="event.edit" color="indigo" dark class="register-btn mx-2">Edit Event</v-btn>
           </div>
+          <br>
         </v-flex>
       </v-layout>
     </v-container>

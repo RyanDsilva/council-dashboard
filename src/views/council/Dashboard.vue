@@ -45,7 +45,7 @@
       <v-divider class="my-3"></v-divider>
       <v-layout row wrap>
         <v-flex xs12>
-          <v-card raised class="text-xs-center">
+          <v-card raised class="text-xs-center pb-3">
             <v-toolbar color="indigo" dark>
               <h3 class="mx-auto">Events</h3>
             </v-toolbar>
@@ -63,6 +63,8 @@
               </v-list>
             </v-card-text>
           </v-card>
+          <br>
+          <br>
         </v-flex>
       </v-layout>
     </v-container>

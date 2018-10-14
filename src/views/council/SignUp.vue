@@ -50,6 +50,7 @@ export default {
           this.$session.start();
           this.$session.set('user', data);
           localStorage.setItem('user', JSON.stringify(data));
+          this.$store.commit('setIsLoggedIn', true);
           this.$router.push('/event/all');
         })
         .catch(err => {

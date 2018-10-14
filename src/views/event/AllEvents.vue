@@ -5,9 +5,9 @@
       <v-container grid-list-md>
         <div id="page-heading">
           <h1>Events</h1>
-          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis sequi explicabo nobis iste rerum maiores ipsum esse facilis atque doloribus exercitationem nihil, non at laudantium tenetur optio dicta amet mollitia. Illum, alias fugit culpa nemo veritatis ex possimus iusto placeat quae est sit neque dolores repellendus iure impedit, atque qui. Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quis sequi explicabo nobis iste rerum maiores ipsum esse facilis atque doloribus exercitationem nihil, non at laudantium tenetur optio dicta amet mollitia. Illum, alias fugit culpa nemo veritatis ex possimus iusto placeat quae est sit neque dolores repellendus iure impedit, atque qui.</p>
+          <p>Find Events that interest you, in every domain, organised by the various councils in college</p>
         </div>
-        <div class="text-xs-center">
+        <div v-if="isLoggedIn" class="text-xs-center">
           <v-btn to="/event/create" fab dark color="indigo">
             <v-icon>add</v-icon>
           </v-btn>
@@ -19,7 +19,6 @@
               <v-card-title primary-title>
                 <div class="text-xs-center mx-auto">
                   <h3 class="headline mb-1">{{event.name}}</h3>
-                  <div class="grey--text">{{event.host}}</div>
                 </div>
               </v-card-title>
               <v-card-actions>
@@ -35,6 +34,7 @@
 
 <script>
 import axios from 'axios';
+import { mapState } from 'vuex';
 
 export default {
   name: 'AllEvents',
@@ -42,6 +42,9 @@ export default {
     events: [],
     error: '',
   }),
+  computed: {
+    ...mapState(['isLoggedIn']),
+  },
   created() {
     axios
       .get('/event/all')

@@ -3,7 +3,7 @@
     <v-layout row wrap>
       <v-flex xs12 class="text-xs-center">
         <div class="council-reg">
-          <v-card raised class="mx-auto my-5 card-wrapper">
+          <v-card raised class="mx-auto my-2 card-wrapper">
             <v-card-text class="form-content">
               <h1 class="reg-title">User Register</h1>
               <p>In order to register for any events, you will have to be a registered user.</p>
@@ -18,7 +18,10 @@
               </v-form>
             </v-card-text>
           </v-card>
-          <v-btn color="indigo" dark to="/users/all">User Database</v-btn>
+          <v-btn color="indigo" v-if="isLoggedIn" dark to="/users/all">User Database</v-btn>
+          <br>
+          <br>
+          <br>
         </div>
       </v-flex>
     </v-layout>
@@ -27,6 +30,7 @@
 
 <script>
 import axios from 'axios';
+import { mapState } from 'vuex';
 
 export default {
   name: 'UserCreate',
@@ -46,6 +50,9 @@ export default {
     ],
     branches: ['Computers', 'Info. Tech.', 'Electronics', 'Production'],
   }),
+  computed: {
+    ...mapState(['isLoggedIn']),
+  },
   methods: {
     userCreate() {
       axios

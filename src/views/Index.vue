@@ -6,9 +6,9 @@
           <v-flex sm12 md6>
             <div id="title-heading">
               <h1>KOLLAB</h1>
-              <h3 class="subheading">Lorem ipsum dolor sit amet consectetur adipisicing elit. Ad, perferendis? Iure quam ducimus, a nam quia quasi nemo illo harum nihil maiores corrupti molestias ipsum aliquid quo! Dolor, quae molestiae!</h3>
+              <h3 class="subheading">A central place for all your collegiate events, a common hub for managing events and makes organising events hassle-free.</h3>
               <br>
-              <v-btn to="/event/all" large color="deep-purple darken-1" raised dark>Search For Interesting Events!</v-btn>
+              <v-btn to="/calendar" large color="deep-purple darken-1" raised dark>View Calendar</v-btn>
               <br>
             </div>
           </v-flex>

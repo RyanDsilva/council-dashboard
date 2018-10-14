@@ -35,6 +35,8 @@
               </v-list>
             </v-card-text>
           </v-card>
+          <br>
+          <br>
         </v-flex>
       </v-layout>
     </v-container>
