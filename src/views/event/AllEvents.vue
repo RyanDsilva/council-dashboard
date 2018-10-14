@@ -44,7 +44,7 @@ export default {
   }),
   created() {
     axios
-      .get('event/all')
+      .get('/event/all')
       .then(res => {
         const data = res.data;
         // eslint-disable-next-line

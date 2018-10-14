@@ -1,5 +1,5 @@
 <template>
-  <v-footer height="auto" color="indigo">
+  <v-footer height="auto" color="indigo" app absolute>
     <v-layout justify-center row wrap>
       <v-btn v-for="link in links" :key="link.name" color="white" :to="link.href" flat round>
         {{ link.name }}

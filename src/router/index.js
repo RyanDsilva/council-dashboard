@@ -6,11 +6,13 @@ import Login from '@/views/council/Login';
 import SignUp from '@/views/council/SignUp';
 import Dashboard from '@/views/council/Dashboard';
 import EditCouncil from '@/views/council/EditCouncil';
+import AddMember from '@/views/council/AddMember';
 import AllEvents from '@/views/event/AllEvents';
 import EditEvent from '@/views/event/EditEvent';
 import EventInfo from '@/views/event/EventInfo';
+import Registrations from '@/views/event/Registrations';
 import UserCreate from '@/views/user/UserCreate';
-import UserDashboard from '@/views/user/UserDashboard';
+import UserInfo from '@/views/user/UserInfo';
 import Error404 from '@/views/404';
 
 Vue.use(Router);
@@ -29,13 +31,21 @@ const router = new Router({
     },
     {
       path: '/signup',
-      name: 'Login',
+      name: 'Signup',
       component: SignUp,
     },
     {
       path: '/council/:id/dashboard',
       name: 'Dashboard',
       component: Dashboard,
+      // meta: {
+      //   requiresAuth: true,
+      // },
+    },
+    {
+      path: '/council/:id/members/add',
+      name: 'AddMember',
+      component: AddMember,
       // meta: {
       //   requiresAuth: true,
       // },
@@ -67,6 +77,11 @@ const router = new Router({
       component: EventInfo,
     },
     {
+      path: '/event/:id/registrations',
+      name: 'EventReg',
+      component: Registrations,
+    },
+    {
       path: '/event/:id/edit',
       name: 'EditEvent',
       component: EditEvent,
@@ -81,12 +96,9 @@ const router = new Router({
       component: UserCreate,
     },
     {
-      path: '/user/:rollNo',
-      name: 'UserDashboard',
-      component: UserDashboard,
-      // meta: {
-      //   requiresAuth: true,
-      // },
+      path: '/users/all',
+      name: 'UserInfo',
+      component: UserInfo,
     },
     {
       path: '*',

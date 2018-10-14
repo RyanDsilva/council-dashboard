@@ -9,7 +9,7 @@
           <div class="header">{{event.name}}</div>
           <small class="font-weight-light grey--text ">{{event.type}}</small>
           <hr class="my-2">
-          <div class="display-1 font-weight-light grey--text ">{{event.host}}</div>
+          <div class="display-1 font-weight-light grey--text ">{{event.heldBy.name}}</div>
         </v-flex>
       </v-layout>
       <v-layout row wrap class="my-1">
@@ -25,7 +25,26 @@
             {{event.duration}}
           </div>
           <div class="register text-xs-center my-1">
-            <v-btn :to="event.link" color="indigo" dark class="register-btn">Register</v-btn>
+            <v-dialog v-model="dialog" width="75%">
+              <v-btn slot="activator" color="indigo" dark class="register-btn">Register</v-btn>
+              <v-card>
+                <v-card-title class="headline grey lighten-2" primary-title>
+                  Register for {{event.name}}
+                </v-card-title>
+                <v-card-text>
+                  <v-form>
+                    <v-text-field v-model="rollNo" type="number" label="Roll. No." required></v-text-field>
+                  </v-form>
+                </v-card-text>
+                <v-divider></v-divider>
+                <v-card-actions>
+                  <v-spacer></v-spacer>
+                  <v-btn color="indigo" class="register-btn mx-2" dark @click.stop="eventReg">
+                    Register
+                  </v-btn>
+                </v-card-actions>
+              </v-card>
+            </v-dialog>
             <v-btn :to="event.edit" color="indigo" dark class="register-btn mx-2">Edit Event</v-btn>
           </div>
         </v-flex>
@@ -42,6 +61,8 @@ export default {
   data: () => ({
     event: {},
     error: '',
+    dialog: false,
+    rollNo: '',
   }),
   created() {
     axios
@@ -51,13 +72,27 @@ export default {
         const data = res.data;
         this.event = data;
         // eslint-disable-next-line
-        this.event.link = '/event/' + this.$route.params.id + '/register';
-        // eslint-disable-next-line
         this.event.edit = '/event/' + this.$route.params.id + '/edit';
       })
       .catch(err => {
         this.error = err.message;
       });
+  },
+  methods: {
+    eventReg() {
+      axios
+        // eslint-disable-next-line
+        .post('/event/' + this.$route.params.id + '/register', {
+          rollNo: this.rollNo,
+        })
+        .then(
+          // eslint-disable-next-line
+          this.$router.push('/event/all'),
+        )
+        .catch(err => {
+          this.error = err.message;
+        });
+    },
   },
 };
 </script>
