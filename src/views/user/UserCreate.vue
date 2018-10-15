@@ -64,7 +64,10 @@ export default {
           year: this.year,
           branch: this.branch,
         })
-        .then(this.$router.push('/event/all'))
+        .then(() => {
+          this.flash('Student Added Successfully!', 'success');
+          this.$router.push('/event/all');
+        })
         .catch(err => {
           this.error = err.message;
         });

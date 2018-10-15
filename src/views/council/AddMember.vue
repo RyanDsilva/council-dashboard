@@ -25,7 +25,6 @@ export default {
   name: 'AddMember',
   data: () => ({
     rollNo: '',
-    error: '',
     council: {},
   }),
   methods: {
@@ -35,12 +34,13 @@ export default {
         .put('/council/' + this.$route.params.id + '/members/add', {
           rollNo: this.rollNo,
         })
-        .then(
+        .then(() => {
+          this.flash('Member Added Successfully!', 'success');
           // eslint-disable-next-line
-          this.$router.push('/council/' + this.$route.params.id + '/dashboard'),
-        )
+          this.$router.push('/council/' + this.$route.params.id + '/dashboard');
+        })
         .catch(err => {
-          this.error = err.message;
+          this.$store.commit('setError', err.message);
         });
     },
   },

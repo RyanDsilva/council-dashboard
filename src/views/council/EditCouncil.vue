@@ -31,10 +31,11 @@ export default {
         .put('/council/' + this.$route.params.id + '/edit', {
           council: this.council,
         })
-        .then(
+        .then(() => {
+          this.flash('Edited Successfully!', 'success');
           // eslint-disable-next-line
-          this.$router.push('/council/' + this.$route.params.id + '/dashboard'),
-        )
+          this.$router.push('/council/' + this.$route.params.id + '/dashboard');
+        })
         .catch(err => {
           this.error = err.message;
         });

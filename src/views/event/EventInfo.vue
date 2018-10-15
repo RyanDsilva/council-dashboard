@@ -1,6 +1,7 @@
 <template>
   <div id="event-info">
     <v-container grid-list-lg>
+      <flash-message class="mx-5 mt-2 text-xs-center"></flash-message>
       <v-layout row wrap>
         <v-flex xs12 sm6 lg7>
           <v-img class="poster" src="../../assets/test.jpg" width="100%" height="400"></v-img>

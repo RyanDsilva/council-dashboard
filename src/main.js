@@ -6,7 +6,9 @@ import axios from 'axios';
 import FullCalendar from 'vue-full-calendar';
 import 'vuetify/dist/vuetify.min.css';
 import 'fullcalendar/dist/fullcalendar.css';
+import 'vue-flash-message/dist/vue-flash-message.min.css';
 import DatetimePicker from 'vuetify-datetime-picker';
+import VueFlashMessage from 'vue-flash-message';
 import App from './App';
 import router from './router';
 import store from './store';
@@ -14,6 +16,7 @@ import store from './store';
 Vue.use(Vuetify);
 Vue.use(FullCalendar);
 Vue.use(DatetimePicker);
+Vue.use(VueFlashMessage);
 Vue.use(VueSession, {
   persist: true,
 });

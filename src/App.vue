@@ -3,7 +3,7 @@
     <div id="app">
       <Navbar></Navbar>
       <v-content>
-        <router-view/>
+        <router-view />
       </v-content>
       <Footer></Footer>
     </div>
@@ -28,5 +28,8 @@ export default {
   font-family: 'Montserrat', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+.flash__message-content {
+  color: #fff !important;
 }
 </style>

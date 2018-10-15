@@ -52,6 +52,7 @@ export default {
           localStorage.setItem('user', JSON.stringify(data));
           this.$store.commit('setCurrentUser', JSON.stringify(data));
           this.$store.commit('setIsLoggedIn', true);
+          this.flash('Registered Successfully!', 'success');
           this.$router.push('/event/all');
         })
         .catch(err => {

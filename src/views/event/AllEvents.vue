@@ -1,8 +1,8 @@
 <template>
   <div>
-    <div class="top"></div>
     <div class="event-cards">
       <v-container grid-list-md>
+        <flash-message class="mx-5 mt-2 text-xs-center"></flash-message>
         <div id="page-heading">
           <h1>Events</h1>
           <p>Find Events that interest you, in every domain, organised by the various councils in college</p>

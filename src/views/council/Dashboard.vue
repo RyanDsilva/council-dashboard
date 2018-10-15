@@ -3,7 +3,11 @@
     <v-container grid-list-md>
       <v-layout row wrap>
         <v-flex xs12 md7 align-center>
+          <flash-message class="mx-5 mt-2 text-xs-center"></flash-message>
           <v-card raised class="text-xs-center">
+            <v-btn :to="'/council/'+this.$route.params.id+'/edit'" color="indigo" dark absolute bottom right fab>
+              <v-icon>edit</v-icon>
+            </v-btn>
             <v-card-title>
               <v-avatar size="300" class="mx-auto">
                 <v-img position="center center" src="../../assets/logo.png"></v-img>
@@ -42,6 +46,7 @@
           </div>
         </v-flex>
       </v-layout>
+      <br>
       <v-divider class="my-3"></v-divider>
       <v-layout row wrap>
         <v-flex xs12>

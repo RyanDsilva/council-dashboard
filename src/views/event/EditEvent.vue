@@ -59,7 +59,10 @@ export default {
       axios
         // eslint-disable-next-line
         .put('/event/' + this.$route.params.id + '/edit', { event: this.event })
-        .then(this.$router.push('/event/all'))
+        .then(() => {
+          this.flash('Edited Successfully!', 'success');
+          this.$router.push('/event/all');
+        })
         .catch(err => {
           this.error = err.message;
         });

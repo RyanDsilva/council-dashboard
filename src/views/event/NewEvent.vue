@@ -44,7 +44,10 @@ export default {
       this.event.heldBy = this.user._id;
       axios
         .post('/event/create', { event: this.event })
-        .then(this.$router.push('/event/all'))
+        .then(() => {
+          this.flash('Event Added Successfully!', 'success');
+          this.$router.push('/event/all');
+        })
         .catch(err => {
           this.error = err.message;
         });

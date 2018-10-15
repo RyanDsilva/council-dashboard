@@ -3,6 +3,7 @@
     <v-layout row wrap>
       <v-flex xs12 class="text-xs-center">
         <div class="council-login">
+          <v-alert v-if="error!=''" type="error">{{error}}</v-alert>
           <v-card raised ripple class="mx-auto my-5 card-wrapper">
             <v-card-text class="form-content">
               <h1 class="login-title">Council Login</h1>
@@ -30,6 +31,7 @@ export default {
   data: () => ({
     username: '',
     password: '',
+    error: '',
   }),
   methods: {
     login() {
@@ -45,6 +47,7 @@ export default {
           localStorage.setItem('user', JSON.stringify(data));
           this.$store.commit('setCurrentUser', JSON.stringify(data));
           this.$store.commit('setIsLoggedIn', true);
+          this.flash('Logged In Successfully!', 'success');
           this.$router.push('/event/all');
         })
         .catch(err => {
