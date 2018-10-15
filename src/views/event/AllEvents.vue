@@ -18,7 +18,7 @@
               <v-img src="../../assets/test.jpg"></v-img>
               <v-card-title primary-title>
                 <div class="text-xs-center mx-auto">
-                  <h3 class="headline mb-1">{{event.name}}</h3>
+                  <h3 class="headline">{{event.name}}</h3>
                 </div>
               </v-card-title>
               <v-card-actions>
@@ -62,6 +62,23 @@ export default {
         this.error = err.message;
       });
   },
+  // beforeUpdate() {
+  //   axios
+  //     .get('/event/all')
+  //     .then(res => {
+  //       const data = res.data;
+  //       // eslint-disable-next-line
+  //       for (const eventName in data) {
+  //         const event = data[eventName];
+  //         // eslint-disable-next-line
+  //         event.link = '/event/' + event._id;
+  //         this.events.push(event);
+  //       }
+  //     })
+  //     .catch(err => {
+  //       this.error = err.message;
+  //     });
+  // },
 };
 </script>
 

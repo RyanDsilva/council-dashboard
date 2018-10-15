@@ -28,9 +28,21 @@ export default {
   data: () => ({
     event: {},
     error: '',
-    items: ['Technical', 'Non-Technical', 'Sports'],
+    items: ['Technical', 'Non-Technical', 'Sports', 'Literary', 'Academic'],
   }),
   created() {
+    axios
+      // eslint-disable-next-line
+      .get('/event/' + this.$route.params.id + '/edit')
+      .then(res => {
+        const data = res.data;
+        this.event = data;
+      })
+      .catch(err => {
+        this.error = err.message;
+      });
+  },
+  beforeUpdate() {
     axios
       // eslint-disable-next-line
       .get('/event/' + this.$route.params.id + '/edit')

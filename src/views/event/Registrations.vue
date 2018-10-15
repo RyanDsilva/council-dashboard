@@ -68,6 +68,19 @@ export default {
         this.error = err.message;
       });
   },
+  beforeUpdate() {
+    axios
+      // eslint-disable-next-line
+      .get('/event/' + this.$route.params.id)
+      .then(res => {
+        const data = res.data;
+        this.event = data;
+        this.council = data.heldBy;
+      })
+      .catch(err => {
+        this.error = err.message;
+      });
+  },
 };
 </script>
 

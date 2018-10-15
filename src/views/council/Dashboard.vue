@@ -54,10 +54,10 @@
                 <v-list-tile ripple v-for="event in council.events" :key="event.name">
                   <v-list-tile-content>
                     <v-list-tile-title>{{event.name}}</v-list-tile-title>
-                    <v-list-tile-sub-title>{{event.description}}</v-list-tile-sub-title>
+                    <v-list-tile-sub-title>{{event.description.substring(0,100)}}....</v-list-tile-sub-title>
                   </v-list-tile-content>
                   <v-list-tile-action>
-                    <v-btn dark color="indigo" large class="pa-2" :to="'/event/'+event._id+'/registrations'">View Registrations</v-btn>
+                    <v-btn dark color="indigo" class="pa-2" :to="'/event/'+event._id+'/registrations'">Details</v-btn>
                   </v-list-tile-action>
                 </v-list-tile>
               </v-list>
@@ -90,6 +90,13 @@ export default {
     },
   },
   created() {
+    // eslint-disable-next-line
+    axios.get('/council/' + this.$route.params.id + '/dashboard').then(res => {
+      const data = res.data;
+      this.council = data;
+    });
+  },
+  beforeUpdate() {
     // eslint-disable-next-line
     axios.get('/council/' + this.$route.params.id + '/dashboard').then(res => {
       const data = res.data;

@@ -64,6 +64,21 @@ export default {
         this.error = err.message;
       });
   },
+  beforeUpdate() {
+    axios
+      .get('/users/all')
+      .then(res => {
+        const data = res.data;
+        // eslint-disable-next-line
+        for (const userName in data) {
+          const user = data[userName];
+          this.users.push(user);
+        }
+      })
+      .catch(err => {
+        this.error = err.message;
+      });
+  },
 };
 </script>
 

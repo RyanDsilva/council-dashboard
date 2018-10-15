@@ -97,6 +97,7 @@ const router = new Router({
       component: EditEvent,
       meta: {
         requiresAuth: true,
+        isOwner: true,
       },
     },
     {
@@ -131,6 +132,12 @@ router.beforeEach((to, from, next) => {
       const user = JSON.parse(store.state.user);
       if (to.matched.some(record => record.meta.is_admin)) {
         if (user.isAdmin) {
+          next();
+        } else {
+          next({ name: 'AllEvents' });
+        }
+      } else if (to.matched.some(record => record.meta.isOwner)) {
+        if (to.params.id in user.events) {
           next();
         } else {
           next({ name: 'AllEvents' });

@@ -51,6 +51,13 @@ export default {
       this.council = data;
     });
   },
+  beforeUpdate() {
+    // eslint-disable-next-line
+    axios.get('/council/' + this.$route.params.id + '/dashboard').then(res => {
+      const data = res.data;
+      this.council = data;
+    });
+  },
 };
 </script>
 

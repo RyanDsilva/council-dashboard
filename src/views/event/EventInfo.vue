@@ -45,7 +45,7 @@
                 </v-card-actions>
               </v-card>
             </v-dialog>
-            <v-btn :to="event.edit" color="indigo" dark class="register-btn mx-2">Edit Event</v-btn>
+            <v-btn v-if="isLoggedIn" :to="event.edit" color="indigo" dark class="register-btn mx-2">Edit Event</v-btn>
           </div>
           <br>
         </v-flex>
@@ -56,6 +56,7 @@
 
 <script>
 import axios from 'axios';
+import { mapState } from 'vuex';
 
 export default {
   name: 'EventInfo',
@@ -65,6 +66,9 @@ export default {
     dialog: false,
     rollNo: '',
   }),
+  computed: {
+    ...mapState(['isLoggedIn']),
+  },
   created() {
     axios
       // eslint-disable-next-line

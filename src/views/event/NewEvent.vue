@@ -36,7 +36,7 @@ export default {
       heldBy: '',
     },
     error: '',
-    items: ['Technical', 'Non-Technical', 'Sports'],
+    items: ['Technical', 'Non-Technical', 'Sports', 'Literary', 'Academic'],
   }),
   methods: {
     submit() {

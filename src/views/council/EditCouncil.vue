@@ -52,6 +52,18 @@ export default {
         this.error = err.message;
       });
   },
+  beforeUpdate() {
+    axios
+      // eslint-disable-next-line
+      .get('/council/' + this.$route.params.id + '/dashboard')
+      .then(res => {
+        const data = res.data;
+        this.council = data;
+      })
+      .catch(err => {
+        this.error = err.message;
+      });
+  },
 };
 </script>
 
