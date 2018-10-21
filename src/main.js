@@ -22,7 +22,7 @@ Vue.use(VueSession, {
 });
 Vue.config.productionTip = false;
 
-axios.defaults.baseURL = 'http://localhost:3000';
+axios.defaults.baseURL = 'https://council-dashboard.herokuapp.com';
 
 /* eslint-disable no-new */
 new Vue({
