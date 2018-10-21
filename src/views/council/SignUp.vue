@@ -6,12 +6,12 @@
           <v-card raised class="mx-auto my-5 card-wrapper">
             <v-card-text class="form-content">
               <h1 class="reg-title">Council Register</h1>
-              <v-form>
-                <v-text-field v-model="username" type="text" label="Username" required></v-text-field>
-                <v-text-field v-model="name" type="text" label="Name Of The Council" required></v-text-field>
-                <v-text-field v-model="password" type="password" label="Password" required></v-text-field>
-                <v-textarea v-model="description" label="Council Description" hint="Detailed Council Description preffered."></v-textarea>
-                <v-btn color="indigo" dark @click.prevent="signup">Register</v-btn>
+              <v-form ref="form" v-model="valid" lazy-validation>
+                <v-text-field v-model="username" :rules="rules" type="text" label="Username" required></v-text-field>
+                <v-text-field v-model="name" :rules="rules" type="text" label="Name Of The Council" required></v-text-field>
+                <v-text-field v-model="password" :rules="rules" type="password" label="Password" required></v-text-field>
+                <v-textarea v-model="description" :rules="rules" label="Council Description" hint="Detailed Council Description preffered."></v-textarea>
+                <v-btn color="indigo white--text" :disabled="!valid" @click.prevent="signup">Register</v-btn>
               </v-form>
               <p class="my-2">Already A User?
                 <router-link class="log-link" to="/login">Login!</router-link>
@@ -35,29 +35,33 @@ export default {
     name: '',
     description: '',
     error: '',
+    valid: true,
+    rules: [v => !!v || 'Field is required'],
   }),
   methods: {
     signup() {
-      axios
-        .post('/council/register', {
-          username: this.username,
-          password: this.password,
-          name: this.name,
-          description: this.description,
-        })
-        .then(res => {
-          const data = res.data;
-          this.$session.start();
-          this.$session.set('user', data);
-          localStorage.setItem('user', JSON.stringify(data));
-          this.$store.commit('setCurrentUser', JSON.stringify(data));
-          this.$store.commit('setIsLoggedIn', true);
-          this.flash('Registered Successfully!', 'success');
-          this.$router.push('/event/all');
-        })
-        .catch(err => {
-          this.error = err.message;
-        });
+      if (this.$refs.form.validate()) {
+        axios
+          .post('/council/register', {
+            username: this.username,
+            password: this.password,
+            name: this.name,
+            description: this.description,
+          })
+          .then(res => {
+            const data = res.data;
+            this.$session.start();
+            this.$session.set('user', data);
+            localStorage.setItem('user', JSON.stringify(data));
+            this.$store.commit('setCurrentUser', JSON.stringify(data));
+            this.$store.commit('setIsLoggedIn', true);
+            this.flash('Registered Successfully!', 'success');
+            this.$router.push('/event/all');
+          })
+          .catch(err => {
+            this.error = err.message;
+          });
+      }
     },
   },
 };

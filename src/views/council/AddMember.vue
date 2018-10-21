@@ -6,9 +6,9 @@
           <v-card raised ripple class="mx-auto my-5 card-wrapper">
             <v-card-text class="form-content">
               <h1 class="login-title">Add Member to {{council.name}}</h1>
-              <v-form>
-                <v-text-field v-model="rollNo" type="number" label="Roll. No." required></v-text-field>
-                <v-btn color="indigo" dark @click.prevent="addMember">Add Member</v-btn>
+              <v-form ref="form" v-model="valid" lazy-validation>
+                <v-text-field v-model="rollNo" :rules="rules" type="number" label="Roll. No." required></v-text-field>
+                <v-btn color="indigo white--text" :disabled="!valid" @click.prevent="addMember">Add Member</v-btn>
               </v-form>
             </v-card-text>
           </v-card>
@@ -26,22 +26,32 @@ export default {
   data: () => ({
     rollNo: '',
     council: {},
+    error: '',
+    valid: true,
+    rules: [
+      v => !!v || 'Field is required',
+      v => (v && v.length === 4) || 'Roll No must be equal to 4 characters',
+    ],
   }),
   methods: {
     addMember() {
-      axios
-        // eslint-disable-next-line
-        .put('/council/' + this.$route.params.id + '/members/add', {
-          rollNo: this.rollNo,
-        })
-        .then(() => {
-          this.flash('Member Added Successfully!', 'success');
+      if (this.$refs.form.validate()) {
+        axios
           // eslint-disable-next-line
-          this.$router.push('/council/' + this.$route.params.id + '/dashboard');
-        })
-        .catch(err => {
-          this.$store.commit('setError', err.message);
-        });
+          .put('/council/' + this.$route.params.id + '/members/add', {
+            rollNo: this.rollNo,
+          })
+          .then(() => {
+            this.flash('Member Added Successfully!', 'success');
+            this.$router.push(
+              // eslint-disable-next-line
+              '/council/' + this.$route.params.id + '/dashboard',
+            );
+          })
+          .catch(err => {
+            this.error = err.message;
+          });
+      }
     },
   },
   created() {

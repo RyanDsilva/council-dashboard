@@ -4,15 +4,15 @@
       <v-layout row wrap>
         <v-flex xs12 class="text-xs-center">
           <h2 class="new-header">Add New Event</h2>
-          <v-form ref="form" lazy-validation>
-            <v-text-field v-model="event.name" label="Event Name" required></v-text-field>
-            <v-textarea v-model="event.description" label="Event Description" hint="Detailed Event Description preffered."></v-textarea>
-            <v-text-field v-model="event.duration" label="Event Duration" required></v-text-field>
-            <v-select :items="items" label="Event Type" v-model="event.type"></v-select>
+          <v-form ref="form" v-model="valid" lazy-validation>
+            <v-text-field v-model="event.name" :rules="rules" label="Event Name" required></v-text-field>
+            <v-textarea v-model="event.description" :rules="rules" label="Event Description" hint="Detailed Event Description preffered."></v-textarea>
+            <v-text-field v-model="event.duration" :rules="rules" label="Event Duration" required></v-text-field>
+            <v-select :items="items" label="Event Type" :rules="rules" v-model="event.type"></v-select>
             <v-datetime-picker label="Date and Time" v-model="event.date">
             </v-datetime-picker>
             <div class="my-2 mx-auto">
-              <v-btn @click="submit" color="indigo" dark>Add New Event</v-btn>
+              <v-btn @click.prevent="submit" :disabled="!valid" color="indigo white--text">Add New Event</v-btn>
             </div>
           </v-form>
         </v-flex>
@@ -37,20 +37,24 @@ export default {
     },
     error: '',
     items: ['Technical', 'Non-Technical', 'Sports', 'Literary', 'Academic'],
+    valid: true,
+    rules: [v => !!v || 'Field is required'],
   }),
   methods: {
     submit() {
-      // eslint-disable-next-line
-      this.event.heldBy = this.user._id;
-      axios
-        .post('/event/create', { event: this.event })
-        .then(() => {
-          this.flash('Event Added Successfully!', 'success');
-          this.$router.push('/event/all');
-        })
-        .catch(err => {
-          this.error = err.message;
-        });
+      if (this.$refs.form.validate()) {
+        // eslint-disable-next-line
+        this.event.heldBy = this.user._id;
+        axios
+          .post('/event/create', { event: this.event })
+          .then(() => {
+            this.flash('Event Added Successfully!', 'success');
+            this.$router.push('/event/all');
+          })
+          .catch(err => {
+            this.error = err.message;
+          });
+      }
     },
   },
   computed: {

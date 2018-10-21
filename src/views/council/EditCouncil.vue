@@ -4,11 +4,11 @@
       <v-layout row wrap>
         <v-flex xs12 class="text-xs-center">
           <h2 class="new-header text-xs-center">Edit {{council.name}}</h2>
-          <v-form ref="form" lazy-validation>
-            <v-text-field v-model="council.name" label="Name of the Council" required></v-text-field>
-            <v-textarea v-model="council.description" label="Council Description" hint="Detailed Council Description preffered."></v-textarea>
+          <v-form ref="form" lazy-validation v-model="valid">
+            <v-text-field v-model="council.name" :rules="rules" label="Name of the Council" required></v-text-field>
+            <v-textarea v-model="council.description" :rules="rules" label="Council Description" hint="Detailed Council Description preffered."></v-textarea>
             <div class="my-2 mx-auto">
-              <v-btn @click="submit" color="indigo" dark>Confirm Edit</v-btn>
+              <v-btn @click.prevent="submit" color="indigo white--text" :disabled="!valid">Confirm Edit</v-btn>
             </div>
           </v-form>
         </v-flex>
@@ -23,22 +23,28 @@ import axios from 'axios';
 export default {
   data: () => ({
     council: {},
+    valid: true,
+    rules: [v => !!v || 'Field is required'],
   }),
   methods: {
     submit() {
-      axios
-        // eslint-disable-next-line
-        .put('/council/' + this.$route.params.id + '/edit', {
-          council: this.council,
-        })
-        .then(() => {
-          this.flash('Edited Successfully!', 'success');
+      if (this.$refs.form.validate()) {
+        axios
           // eslint-disable-next-line
-          this.$router.push('/council/' + this.$route.params.id + '/dashboard');
-        })
-        .catch(err => {
-          this.error = err.message;
-        });
+          .put('/council/' + this.$route.params.id + '/edit', {
+            council: this.council,
+          })
+          .then(() => {
+            this.flash('Edited Successfully!', 'success');
+            this.$router.push(
+              // eslint-disable-next-line
+              '/council/' + this.$route.params.id + '/dashboard',
+            );
+          })
+          .catch(err => {
+            this.error = err.message;
+          });
+      }
     },
   },
   created() {

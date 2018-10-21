@@ -7,14 +7,14 @@
             <v-card-text class="form-content">
               <h1 class="reg-title">User Register</h1>
               <p>In order to register for any events, you will have to be a registered user.</p>
-              <v-form>
-                <v-text-field v-model="rollNo" type="number" label="Roll No." required></v-text-field>
-                <v-text-field v-model="name" type="text" label="Full Name" required></v-text-field>
-                <v-text-field v-model="email" type="email" label="Email Address" required></v-text-field>
-                <v-text-field v-model="phone" type="text" label="Contact Number"></v-text-field>
-                <v-select :items="years" label="Year" v-model="year"></v-select>
-                <v-select :items="branches" label="Branch" v-model="branch"></v-select>
-                <v-btn color="indigo" dark @click.prevent="userCreate">Register</v-btn>
+              <v-form ref="form" v-model="valid" lazy-validation>
+                <v-text-field v-model="rollNo" :rules="rollNoRules" type="number" label="Roll No." required></v-text-field>
+                <v-text-field v-model="name" :rules="rules" type="text" label="Full Name" required></v-text-field>
+                <v-text-field v-model="email" :rules="emailRules" type="email" label="Email Address" required></v-text-field>
+                <v-text-field v-model="phone" :rules="rules" type="text" label="Contact Number"></v-text-field>
+                <v-select :items="years" :rules="rules" label="Year" v-model="year"></v-select>
+                <v-select :items="branches" :rules="rules" label="Branch" v-model="branch"></v-select>
+                <v-btn color="indigo white--text" :disabled="!valid" @click.prevent="userCreate">Register</v-btn>
               </v-form>
             </v-card-text>
           </v-card>
@@ -49,28 +49,40 @@ export default {
       'Final Year (BE)',
     ],
     branches: ['Computers', 'Info. Tech.', 'Electronics', 'Production'],
+    valid: true,
+    rules: [v => !!v || 'Field is required'],
+    rollNoRules: [
+      v => !!v || 'Roll No. is required',
+      v => (v && v.length === 4) || 'Roll No must be equal to 4 characters',
+    ],
+    emailRules: [
+      v => !!v || 'E-mail is required',
+      v => /.+@.+/.test(v) || 'E-mail must be valid',
+    ],
   }),
   computed: {
     ...mapState(['isLoggedIn']),
   },
   methods: {
     userCreate() {
-      axios
-        .post('/user/create', {
-          rollNo: this.rollNo,
-          email: this.email,
-          name: this.name,
-          phone: this.phone,
-          year: this.year,
-          branch: this.branch,
-        })
-        .then(() => {
-          this.flash('Student Added Successfully!', 'success');
-          this.$router.push('/event/all');
-        })
-        .catch(err => {
-          this.error = err.message;
-        });
+      if (this.$refs.form.validate()) {
+        axios
+          .post('/user/create', {
+            rollNo: this.rollNo,
+            email: this.email,
+            name: this.name,
+            phone: this.phone,
+            year: this.year,
+            branch: this.branch,
+          })
+          .then(() => {
+            this.flash('Student Added Successfully!', 'success');
+            this.$router.push('/event/all');
+          })
+          .catch(err => {
+            this.error = err.message;
+          });
+      }
     },
   },
 };
